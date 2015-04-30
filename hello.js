@@ -10,6 +10,8 @@ require('http').createServer(function (req, res) {
     	});
 	}
 
+	console.log(req.method);
+
 	res.writeHead(200, "OK", {'Content-Type': 'text/html'});
 	res.write('<html><head><title>Resin.io Text2Speech</title></head><body style="text-align:center;">');
 	res.write('<h1>Resin.io Text2Speech</h1>');
