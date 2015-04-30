@@ -2,15 +2,15 @@ var tts = require("node-tts-google").tts;
 
 require('http').createServer(function (req, res) {
 
-	req.on('data', function (chunk) {
-        // pipe request body to speaker
-        str = chunk.slice(5);
-        console.log(str);
-        tts.speak(str, 'en');
-	});
+	if (req.method === "POST") {
+		req.on('data', function (chunk) {
+	        // pipe request body to speaker
+	        str = chunk.slice(5);
+	        tts.speak(str, 'en');
+		});
+	}
 
 	req.on('end', function () {
-
 		res.write('<html><head><meta name="viewport" content="width=device-width, initial-scale=1"><title>Resin.io Text2Speech</title></head><body style="text-align:center;">');
 		res.write('<h1>Resin.io Text2Speech</h1>');
 		res.write('<form enctype="application/x-www-form-urlencoded" action="/" method="post">');
